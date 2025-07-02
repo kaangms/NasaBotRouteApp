@@ -1,3 +1,5 @@
+
+
 namespace NasaBotRouteApp.Helpers;
 
 public static class NasaMovementHelper
@@ -31,9 +33,9 @@ public static class NasaMovementHelper
         }
         return directions[currentIndex];
     }
-    public static void ParseMaxCoordinates(string? input, out int maxX, out int maxY, out int minX, out int minY)
+    public static void ParseMaxCoordinates(string? input, out int maxX, out int maxY)
     {
-        minX = maxX = minY = maxY = 0; // Default minimum coordinates
+        maxX = maxY = 0; // Default minimum coordinates
         var inputKeys = input?.Split(" ").ToArray();
         if (inputKeys is null || inputKeys.Length != 2)
         {
@@ -46,11 +48,15 @@ public static class NasaMovementHelper
         }
         maxX = int.Parse(inputKeys![0].ToString());
         maxY = int.Parse(inputKeys[1].ToString());
-        if (maxX <= 0 || maxY <= 0)
+        if (maxX < NasaKeyWordsConstants.MinX || maxY < NasaKeyWordsConstants.MinY)
         {
             throw new ArgumentOutOfRangeException("Maximum coordinates must be greater than zero.");
         }
-
+        var equalityCheck = maxX == NasaKeyWordsConstants.MinX && maxY == NasaKeyWordsConstants.MinY;
+        if (equalityCheck)
+        {
+            throw new ArgumentOutOfRangeException("Maximum coordinates cannot be both zero.");
+        }
     }
     public static void ParseRoverRobbotInitCoordinates(string? input, out int x, out int y, out CompassDirectionTypes direction)
     {

@@ -32,7 +32,7 @@ public class NasaRoverMovementServiceTest
         try
         {
             var instanceService = new NasaRoverMovementService(ValidInput, countCreateRobot);
-            var filterData = new RoverRobotValidationFilterData(5, 5, 0, 0);
+            var filterData = new RoverRobotValidationFilterData(5, 5);
             List<RoverRobot> roverRobots = [];
             for (int i = 0; i < countCreateRobot; i++)
             {

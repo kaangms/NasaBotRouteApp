@@ -4,14 +4,14 @@ public class RoverRobot(int x, int y, CompassDirectionTypes direction) : BaseSur
 {
     public RoverRobot(int x, int y, CompassDirectionTypes direction, RoverRobotValidationFilterData filterData) : this(x, y, direction)
     {
-        if (x < filterData.MinX || x > filterData.MaxX)
+        if (x < NasaKeyWordsConstants.MinX || x > filterData.MaxX)
         {
-            throw new ArgumentOutOfRangeException(nameof(x), $"X coordinate must be between {filterData.MinX} and {filterData.MaxX}.");
+            throw new ArgumentOutOfRangeException(nameof(x), $"X coordinate must be between {NasaKeyWordsConstants.MinX} and {filterData.MaxX}.");
         }
 
-        if (y < filterData.MinY || y > filterData.MaxY)
+        if (y < NasaKeyWordsConstants.MinY || y > filterData.MaxY)
         {
-            throw new ArgumentOutOfRangeException(nameof(y), $"Y coordinate must be between {filterData.MinY} and {filterData.MaxY}.");
+            throw new ArgumentOutOfRangeException(nameof(y), $"Y coordinate must be between {NasaKeyWordsConstants.MinY} and {filterData.MaxY}.");
         }
     }
 
@@ -20,8 +20,8 @@ public class RoverRobot(int x, int y, CompassDirectionTypes direction) : BaseSur
         var testX = X + deltaX;
         var testY = Y + deltaY;
         bool isWithinBounds =
-                testX >= filterData.MinX && testX <= filterData.MaxX &&
-                testY >= filterData.MinY && testY <= filterData.MaxY;
+                testX >= NasaKeyWordsConstants.MinX && testX <= filterData.MaxX &&
+                testY >= NasaKeyWordsConstants.MinY && testY <= filterData.MaxY;
 
         if (isWithinBounds is false)
         {

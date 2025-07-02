@@ -12,8 +12,8 @@ public class NasaRoverMovementService : INasaRoverMovementService
                     ? new RoverRobot[robotCout]
                     : throw new ArgumentOutOfRangeException(nameof(robotCout), "Robot count must be greater than 0.");
 
-        NasaMovementHelper.ParseMaxCoordinates(input.Value(), out int maxX, out int maxY, out int minX, out int minY);
-        _roverRobotValidationFilterData = new RoverRobotValidationFilterData(maxX, maxY, minX, minY);
+        NasaMovementHelper.ParseMaxCoordinates(input.Value(), out int maxX, out int maxY);
+        _roverRobotValidationFilterData = new RoverRobotValidationFilterData(maxX, maxY);
     }
     public void CreateRoverRobot(string? input)
     {
